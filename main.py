@@ -1,32 +1,29 @@
 import json
 from book import Book
-
-
-def read_library() -> list:
-    # Если файл не существует, создаем пустой список книг
-    try:
-        with open('library.json', 'r', encoding='utf-8') as file:
-            books = json.load(file)
-    except json.JSONDecodeError:
-        books = []
-    return books
+from findbook import read_library, find_title, find_author, find_year
 
 
 def show_all_books() -> None:
-    books = read_library()
-    for book in books:
-        print(book)
+    books: list = read_library()
+    if books:
+        for book in books:
+            print(book)
+    else:
+        print("Книг не найдено")
 
 
 # функция добавления книги
 def add_book() -> None:
-    books = read_library()
-    id: int = books[-1]['id'] + 1    
+    books: list = read_library()
+    if books:
+        id: int = books[-1]['id'] + 1
+    else:
+        id = 1
     title: str = input("Введите название: ")
     author: str = input("Введите автора: ")
     while True:
         try:
-            year = int(input("Введите год (целым числом): "))
+            year: int = int(input("Введите год издания(целым числом): "))
             break  
         except ValueError:
             print("Ошибка: Пожалуйста, введите целое число.")
@@ -43,8 +40,80 @@ def add_book() -> None:
         print("Книга добавлена")
 
 
+def find_book():
+    while True:
+        print("Поиск книги")
+        print("Выберете по какому свойству книги будем искать:")
+        print("1. По названию")
+        print("2. По автору")
+        print("3. По году издания")
+        print("0. Выход")
+        operation: str = input("? ")
+        match operation:
+            case "1":
+                find_title()
+            case "2":
+                find_author()
+            case "3":
+                find_year()
+            case "0":
+                break
+            case _:
+                print("Нет такого свойства")
+
+
+def update_status() -> None:
+    print("Изменение статуса книги")
+    while True:
+        try:
+            id: int = int(input("Введите id книги(целым числом): "))
+            break
+        except ValueError:
+            print("Ошибка: Пожалуйста, введите целое число.")
+    books: list = read_library()
+    for book in books:
+        if book['id'] == id:
+            status: str = input("Введите статус? ")
+            new_book_data: dict = {
+                "id": id,
+                "title": book['title'],
+                "author": book['author'],
+                "year": book['year'],
+                "status": status
+            }
+            book.update(new_book_data)
+            with open('library.json', 'w', encoding='utf-8') as file:
+                json.dump(books, file, ensure_ascii=False, indent=4)
+                print(f"У книги с id = {id} изменен статус")
+                print(book)
+            return
+    print("Книги с таким id не найдено")
+    return
+
+
+def delete_book():
+    print("Удаление книги")
+    while True:
+        try:
+            id: int = int(input("Введите id книги(целым числом): "))
+            break
+        except ValueError:
+            print("Ошибка: Пожалуйста, введите целое число.")
+    books: list = read_library()
+    for book in books:
+        if book['id'] == id:
+            books_after_deletion = [book for book in books if book['id'] != id]
+            with open('library.json', 'w', encoding='utf-8') as file:
+                json.dump(books_after_deletion, file, ensure_ascii=False, indent=4)
+                print(f"Книга с id = {id} удалена!")
+            return
+    print("Книги с таким id не найдено")
+    return
+
+
 # главная функция
 def main():
+    print("Добро пожаловать в систему управления библиотекой!")
     while True:
         print("Какую операцию хотите выполнить:")
         print("1. Отображение всех книг")
@@ -53,18 +122,18 @@ def main():
         print("4. Поиск книги")
         print("5. Удаление книги")
         print("0. Выход")
-        oper: str = input("? ")
-        match oper:
+        operation: str = input("? ")
+        match operation:
             case "1":
                 show_all_books()
             case "2":
                 add_book()
             case "3":
-                pass
+                update_status()
             case "4":
-                pass
+                find_book()
             case "5":
-                pass
+                delete_book()
             case "0":
                 break
             case _:

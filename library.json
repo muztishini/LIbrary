@@ -1,58 +1,23 @@
 [
     {
-        "id": 1,
-        "title": "aaa",
-        "author": "aaa",
-        "year": 223,
-        "status": "df"
-    },
-    {
         "id": 2,
         "title": "bbb",
-        "author": "bbb",
-        "year": 34,
-        "status": "sf"
+        "author": "bbf",
+        "year": 42,
+        "status": "В наличии"
     },
     {
         "id": 3,
-        "title": "sdf",
-        "author": "dsfg",
+        "title": "ert",
+        "author": "gfdhg",
         "year": 34,
         "status": "В наличии"
     },
     {
         "id": 4,
-        "title": "sd",
-        "author": "df",
-        "year": 345,
-        "status": "В наличии"
-    },
-    {
-        "id": 5,
-        "title": "ddd",
-        "author": "ddd",
-        "year": 333,
-        "status": "В наличии"
-    },
-    {
-        "id": 6,
-        "title": "rrr",
-        "author": "rrr",
-        "year": 44,
-        "status": "В наличии"
-    },
-    {
-        "id": 7,
-        "title": "dsfg",
-        "author": "sfg",
-        "year": 234,
-        "status": "В наличии"
-    },
-    {
-        "id": 8,
-        "title": "xv",
-        "author": "ncn",
-        "year": 34,
-        "status": "В наличии"
+        "title": "wer",
+        "author": "tyrt",
+        "year": 45,
+        "status": "sdf"
     }
 ]
