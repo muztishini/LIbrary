@@ -1,4 +1,4 @@
-class Record:
+class Book:
     def __init__(self, id: int, title: str, author: str, year: int, status: str) -> None:
         self.id = id
         self.title = title
