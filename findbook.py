@@ -1,6 +1,6 @@
 import json
 
-
+# функция чтения json-файла
 def read_library() -> list:
     try:
         with open('library.json', 'r', encoding='utf-8') as file:
@@ -9,7 +9,7 @@ def read_library() -> list:
         books = []
     return books
 
-
+# функция получения книг по названию 
 def find_title() -> None:
     title: str = input("Введите название книги? ")
     books: list = read_library()
@@ -23,7 +23,7 @@ def find_title() -> None:
     else:
         print("Книги с таким названием не найдено!")
 
-
+# функция получения книг по автору
 def find_author() -> None:
     author: str = input("Введите автора книги? ")
     books: list = read_library()
@@ -37,7 +37,7 @@ def find_author() -> None:
     else:
         print("Книги с таким автором не найдено!")
 
-
+# функция получения книг по году издания
 def find_year() -> None:
     while True:
         try:

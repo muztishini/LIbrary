@@ -3,6 +3,7 @@ from book import Book
 from findbook import read_library, find_title, find_author, find_year
 
 
+# функция получения списка всех книг
 def show_all_books() -> None:
     books: list = read_library()
     if books:
@@ -29,22 +30,19 @@ def add_book() -> None:
             if year <= 0:
                 print("Ошибка: Год должен быть больше нуля")
             else:
-                break  
+                break
         except ValueError:
             print("Ошибка: Пожалуйста, введите целое число.")
-    
+
     status: str = "В наличии"
     book: Book = Book(id, title, author, year, status)
-
-    # Добавляем новую книгу в список
     books.append(book.to_dict())
-    
-    # Сохраняем список в файл
     with open('library.json', 'w', encoding='utf-8') as file:
         json.dump(books, file, ensure_ascii=False, indent=4)
         print("Книга добавлена")
 
 
+# функция поиска книги
 def find_book():
     while True:
         print("Поиск книги")
@@ -67,6 +65,7 @@ def find_book():
                 print("Нет такого свойства")
 
 
+# функция обновления статуса
 def update_status() -> None:
     print("Изменение статуса книги")
     while True:
@@ -96,6 +95,7 @@ def update_status() -> None:
     return
 
 
+# функция удаления книги 
 def delete_book():
     print("Удаление книги")
     while True:
