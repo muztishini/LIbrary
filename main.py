@@ -6,6 +6,7 @@ from findbook import read_library, find_title, find_author, find_year
 def show_all_books() -> None:
     books: list = read_library()
     if books:
+        print("Список книг")
         for book in books:
             print(book)
     else:
@@ -14,6 +15,7 @@ def show_all_books() -> None:
 
 # функция добавления книги
 def add_book() -> None:
+    print("Добавление книги")
     books: list = read_library()
     if books:
         id: int = books[-1]['id'] + 1
@@ -23,8 +25,11 @@ def add_book() -> None:
     author: str = input("Введите автора: ")
     while True:
         try:
-            year: int = int(input("Введите год издания(целым числом): "))
-            break  
+            year: int = int(input("Введите год издания(целым положительным числом): "))
+            if year <= 0:
+                print("Ошибка: Год должен быть больше нуля")
+            else:
+                break  
         except ValueError:
             print("Ошибка: Пожалуйста, введите целое число.")
     
@@ -116,7 +121,7 @@ def main():
     print("Добро пожаловать в систему управления библиотекой!")
     while True:
         print("Какую операцию хотите выполнить:")
-        print("1. Отображение всех книг")
+        print("1. Список всех книг")
         print("2. Добавление книги")
         print("3. Изменение статуса книги")
         print("4. Поиск книги")
@@ -135,6 +140,7 @@ def main():
             case "5":
                 delete_book()
             case "0":
+                print("До свидания!")
                 break
             case _:
                 print("Нет такой операции")

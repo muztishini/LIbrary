@@ -11,7 +11,7 @@
         "title": "ert",
         "author": "gfdhg",
         "year": 34,
-        "status": "В наличии"
+        "status": "we"
     },
     {
         "id": 4,
@@ -19,5 +19,40 @@
         "author": "tyrt",
         "year": 45,
         "status": "sdf"
+    },
+    {
+        "id": 5,
+        "title": "sdfs",
+        "author": "wer",
+        "year": 123,
+        "status": "В наличии"
+    },
+    {
+        "id": 6,
+        "title": "qwe",
+        "author": "2rfaf",
+        "year": 34,
+        "status": "В наличии"
+    },
+    {
+        "id": 7,
+        "title": "efs",
+        "author": "bxcb",
+        "year": 2,
+        "status": "В наличии"
+    },
+    {
+        "id": 9,
+        "title": "qwe",
+        "author": "ert",
+        "year": 32,
+        "status": "В наличии"
+    },
+    {
+        "id": 10,
+        "title": "qwe",
+        "author": "fdfg",
+        "year": 24,
+        "status": "В наличии"
     }
 ]
