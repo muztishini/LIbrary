@@ -6,7 +6,7 @@ class Book:
         self.year = year
         self.status = status
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         return {"id": self.id, "title": self.title, "author": self.author, "year": self.year, "status": self.status}
 
 
