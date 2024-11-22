@@ -1,38 +1,38 @@
 import json
+from book import Book
 
 
-class Book:
-    def __init__(self, id: int, title: str, author: str, year: int, status: str) -> None:
-        self.id = id
-        self.title = title
-        self.author = author
-        self.year = year
-        self.status = status
-
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "title": self.title,
-            "author": self.author,
-            "year": self.year,
-            "status": self.status
-        }
-
-
-# функция добавления книги
-def add_book() -> None:
-    id: int = int(input("Введите id: "))
-    title: str = input("Введите название: ")
-    author: str = input("Введите автора: ")
-    year: int = int(input("Введите год издания: "))
-    status: str = input("Введите статус: ")
-    book: Book = Book(id, title, author, year, status)
+def read_library() -> list:
     # Если файл не существует, создаем пустой список книг
     try:
         with open('library.json', 'r', encoding='utf-8') as file:
             books = json.load(file)
     except json.JSONDecodeError:
         books = []
+    return books
+
+
+def show_all_books() -> None:
+    books = read_library()
+    for book in books:
+        print(book)
+
+
+# функция добавления книги
+def add_book() -> None:
+    books = read_library()
+    id: int = books[-1]['id'] + 1    
+    title: str = input("Введите название: ")
+    author: str = input("Введите автора: ")
+    while True:
+        try:
+            year = int(input("Введите год (целым числом): "))
+            break  
+        except ValueError:
+            print("Ошибка: Пожалуйста, введите целое число.")
+    
+    status: str = "В наличии"
+    book: Book = Book(id, title, author, year, status)
 
     # Добавляем новую книгу в список
     books.append(book.to_dict())
@@ -56,7 +56,7 @@ def main():
         oper: str = input("? ")
         match oper:
             case "1":
-                pass
+                show_all_books()
             case "2":
                 add_book()
             case "3":
